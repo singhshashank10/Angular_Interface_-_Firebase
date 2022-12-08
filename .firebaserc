@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "angular-interface"
+  },
+  "targets": {
+    "angular-interface": {
+      "hosting": {
+        "AngularInterface": [
+          "angular-interface"
+        ]
+      }
+    }
+  }
+}
