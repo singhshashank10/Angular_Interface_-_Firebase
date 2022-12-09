@@ -1,9 +1,16 @@
-<div class="div_mat_table">
-    <button (click)="applyFilterForUser()">Filter User (Age < 21)</button>
+<div class="divButton">
+    <div class="btn">
+        <button (click)="showAllUser()">Show Complete Data</button>
 
+    </div>
+    <div class="btn">
+        <button (click)="applyFilterForUser()"> Filtered Data Again</button>
+
+    </div>
 </div>
 
 <div class="div_matTable">
+
     <mat-form-field>
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
@@ -26,9 +33,9 @@
 
 
         <ng-container matColumnDef="button">
-            <th mat-header-cell *matHeaderCellDef> Button to Add to Winner </th>
-            <td mat-cell *matCellDef="let element"><button mat-raised-button (click)="openDialog(element)">Open
-                    dialog without animation</button>
+            <th mat-header-cell *matHeaderCellDef> Add to Winner </th>
+            <td mat-cell *matCellDef="let element"><button mat-raised-button (click)="openDialog(element)">Add to
+                    Winner</button>
             </td>
         </ng-container>
 

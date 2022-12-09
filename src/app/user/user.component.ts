@@ -34,13 +34,17 @@ export class UserComponent implements OnInit {
     this.httpClients.get(url).subscribe(
       (user: any) => {
         this.users = user;
-        this.dataSource = new MatTableDataSource(this.users);
+        // this.dataSource = new MatTableDataSource(this.users);
+        this.applyFilterForUser()
       });
   }
 
   applyFilterForUser() {
     let user = this.users.filter((user) => { return (user.age < 21) })
     this.dataSource = new MatTableDataSource(user);
+  }
+  showAllUser() {
+    this.dataSource = new MatTableDataSource(this.users);
   }
 
   goToWinner(user: { name: string, age: number, score: number }) {
