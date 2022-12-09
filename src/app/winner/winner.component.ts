@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, OnInit, Component, ViewChild, DoCheck } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { firstValueFrom, map } from 'rxjs';
 import { DataService } from '../services/data.service';
+
 
 
 @Component({
@@ -24,10 +26,12 @@ export class WinnerComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    // this.service.getWinnerData().subscribe((response) => { this.users = response });
-    // console.log('here', this.users?.__zone_symbol__value);
-    this.fetchData();
     this.displayedColumns = ['name', 'age', 'score',];
+    this.service.getWinnerData().subscribe((data) => {
+      this.users = data
+      console.log(this.users);
+      this.dataSource = new MatTableDataSource(this.users);
+    });
   }
 
   ngAfterViewInit() {
@@ -35,13 +39,7 @@ export class WinnerComponent implements OnInit, AfterViewInit {
   }
 
   fetchData() {
-    let url = 'https://angular-interface-default-rtdb.firebaseio.com/Winner.json';
-    this.httpClients.get(url).subscribe(
-      (user: any) => {
-        this.users = user;
-        this.dataSource = new MatTableDataSource(user);
-        console.log('Winner', user)
-      });
+    this.dataSource = new MatTableDataSource(this.users);
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
